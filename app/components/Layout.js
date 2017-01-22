@@ -13,17 +13,23 @@ import {testApi} from "../actions/userActions"
         // fetchingUser: store.data.fetchingUser
     };
 })
-export default class Layout extends Component {
-    
+
+function select(state, ownProps) {
+    const isAuthenticated = state.user.name || false
+    const redirect = ownProps.location.query.redirect || '/'
+    return {
+        isAuthenticated,
+        redirect
+    }
+}
+class Layout extends Component {
 
 
     componentWillMount() {
-        this.props.dispatch(testApi())
     }
 
 
     login() {
-        console.log("asdfasdfasdfsdfa")
         this.props.dispatch(fetchUser(this.refs.username.value, this.refs.password.value))
     }
 
@@ -32,7 +38,6 @@ export default class Layout extends Component {
 
         return <div>
 
-
             <input ref="username" type="text" placeholder="Gebruikersnaam" />
             <input ref="password" type="text" placeholder="Wachtwoord" />
             <button onClick={this.login.bind(this)}>login</button>
@@ -40,3 +45,5 @@ export default class Layout extends Component {
         </div>
     }
 }
+
+export default connect(select, { login, replace: routerActions.replace })(Layout)
