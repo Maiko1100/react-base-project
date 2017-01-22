@@ -46,6 +46,7 @@ body {
        li:hover a{       
             color: #2e333a;
             background-color: $primary-color;
+            cursor: pointer;
         }
     }    
 }
