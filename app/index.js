@@ -14,7 +14,7 @@ const UserIsAuthenticated = UserAuthWrapper({
     authSelector: state => state.user,
     redirectAction: routerActions.replace,
     wrapperDisplayName: 'UserIsAuthenticated',
-    failureRedirectPath: '/login',
+    failureRedirectPath: '/#/login',
 
 })
 

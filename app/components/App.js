@@ -16,7 +16,7 @@ class App extends Component {
                     <ul>
                         <li><Link to="/Login">Login</Link></li>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/Admin">{'Admnin (Login Required)'}</Link></li>
+                        <li><Link to="/Admin">Admin</Link></li>
                         <li onClick={() => this.props.dispatch(logout())}><a>Logout</a></li>
                     </ul>
                 </div>
