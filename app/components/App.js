@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { connect } from "react-redux"
 import { logout } from '../actions/userActions'
+import { styles } from '../style/app.scss'
 connect((store) => {
     user: store.user
 })
