@@ -15,8 +15,6 @@ export function fetchUser(username, password) {
             dispatch({type: constants.USER_LOGGED_IN, payload: response.data}),
             localStorage.setItem('token', JSON.stringify(response.data.data.token)),
                 localStorage.setItem('naam', JSON.stringify(response.data.data.user.firstName))
-
-
         })
             .catch((err) => {
                 dispatch({type: "FETCH_USER_REJECTED", payload: err})

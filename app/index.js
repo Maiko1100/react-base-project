@@ -9,6 +9,7 @@ import App from './components/App'
 import Home from './components/Home'
 import Admin from './components/Admin'
 import { UserAuthWrapper } from 'redux-auth-wrapper'
+import { logout } from './actions/userActions'
 
 const UserIsAuthenticated = UserAuthWrapper({
     authSelector: state => state.user,
