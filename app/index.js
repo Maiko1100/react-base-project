@@ -21,6 +21,7 @@ const UserIsAuthenticated = UserAuthWrapper({
     LoadingComponent: Loading,
     redirectAction: routerActions.replace,
     wrapperDisplayName: 'UserIsAuthenticated',
+    predicate: user => user.data !== null && user.isLoading === false,
 
 
 })

@@ -5,7 +5,7 @@ import { routerActions } from "react-router-redux";
 import { styles } from '../style/login.scss'
 
 function select(state, ownProps) {
-    const isAuthenticated = state.token || false
+    const isAuthenticated = state.data != null ? state.data:false
     const redirect = ownProps.location.query.redirect || '/'
     return {
         isAuthenticated,

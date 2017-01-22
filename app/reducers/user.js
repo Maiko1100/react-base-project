@@ -3,7 +3,6 @@ import * as constants from '../constants'
 const initialState = {
     data: null,
     isLoading: false,
-
 }
 
 export default function userUpdate(state = initialState, {type, payload}) {
