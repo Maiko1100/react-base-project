@@ -23,7 +23,7 @@ ReactDOM.render(
 
     <Provider store={store}>
         {/* hashHistory ---> browserHistory when the site is on a server for clean urls*/}
-        <Router history={history}>
+        <Router history={hashHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home} />
                 <Route path="/Layout" component={Layout} />
