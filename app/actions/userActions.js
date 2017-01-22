@@ -23,7 +23,7 @@ export function login(data) {
 export function testApi() {
 
     return function (dispatch) {
-        dispatch({type: "FETCH_USER", payload: ""})
+        dispatch({type: constants.USER_LOGGING_IN})
         axios({
             method: 'get',
             url: 'http://www.loginapi.nl/albums',
@@ -37,10 +37,17 @@ export function testApi() {
     }
 }
 export function logout() {
+    console.log("LOGOUT")
     localStorage.removeItem('token')
     localStorage.removeItem('naam')
     return {
         type: constants.USER_LOGGED_OUT
+    }
+}
+
+export function loadUser() {
+    return {
+        type: constants.USER_LOAD
     }
 }
 

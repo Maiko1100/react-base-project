@@ -4,7 +4,7 @@ import {login} from "../actions/userActions";
 import {routerActions} from "react-router-redux";
 
 function select(state, ownProps) {
-    const isAuthenticated = state.user.firstName || false
+    const isAuthenticated = state.token || false
     const redirect = ownProps.location.query.redirect || '/'
     return {
         isAuthenticated,

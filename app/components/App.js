@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { connect } from "react-redux"
-import { logout } from '../actions/userActions'
+import { logout , loadUser} from '../actions/userActions'
 import { styles } from '../style/app.scss'
 connect((store) => {
     user: store.user
 })
 class App extends Component {
+
+    constructor(props){
+        super(props)
+        this.props.dispatch(loadUser())
+        }
+
     render() {
-        console.log(this.props)
         return (
             <div>
                 <div className="header">
@@ -26,4 +31,4 @@ class App extends Component {
     }
 }
 
-export default connect(logout)(App)
+export default connect()(App)
