@@ -12,7 +12,10 @@ export function fetchUser(username, password) {
                 password: password
             }
         }).then((response) => {
-            dispatch({type: "FETCH_USER_FULFILLED", payload: response.data})
+            dispatch({type: "FETCH_USER_FULFILLED", payload: response.data}),
+            localStorage.setItem('token', JSON.stringify(response.data.data.token)),
+                console.log(response.data.data.token)
+
         })
             .catch((err) => {
                 dispatch({type: "FETCH_USER_REJECTED", payload: err})
