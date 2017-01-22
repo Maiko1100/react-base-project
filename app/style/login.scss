@@ -1,0 +1,43 @@
+$primary-color: #edf0f4;
+$secondary-color: #224884;
+
+.login-container{
+    width: 15%;
+    margin-left: 42.5%;
+    margin-top: 50px;    
+    text-align: center;
+
+    .input-container {
+        width: 100%;
+        float: left;
+        margin-top: 10px;
+
+        input {
+            width: 100%;
+            border: .5px solid $secondary-color;
+            color: $secondary-color;
+        }
+
+        input:focus{
+            outline: none;
+            border: 2px solid $secondary-color;
+        }
+    }
+
+    button {
+        float: right;
+        width: 100px;
+        background-color: $primary-color;
+        border: 3px solid $secondary-color;
+        margin-top: 10px;
+        color: $secondary-color;        
+    }
+    
+    button:hover{
+        background-color: $secondary-color;
+        color: $primary-color;
+    }
+
+    
+    
+}
