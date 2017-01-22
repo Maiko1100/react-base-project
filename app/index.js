@@ -22,6 +22,7 @@ const UserIsAuthenticated = UserAuthWrapper({
     redirectAction: routerActions.replace,
     wrapperDisplayName: 'UserIsAuthenticated',
 
+
 })
 const UserIsAdmin = UserAuthWrapper({
     authSelector: state => state.user.data,

@@ -1,7 +1,8 @@
-import React, {Component, PropTypes} from "react";
-import {connect} from "react-redux";
-import {login} from "../actions/userActions";
-import {routerActions} from "react-router-redux";
+import React, { Component, PropTypes } from "react";
+import { connect } from "react-redux";
+import { login } from "../actions/userActions";
+import { routerActions } from "react-router-redux";
+import { styles } from '../style/login.scss'
 
 function select(state, ownProps) {
     const isAuthenticated = state.token || false
@@ -20,7 +21,6 @@ function select(state, ownProps) {
 
 
 class Layout extends Component {
-
     static propTypes = {
         login: PropTypes.func.isRequired,
         replace: PropTypes.func.isRequired
@@ -42,10 +42,6 @@ class Layout extends Component {
         }
     }
 
-    test() {
-        console.log("safdasdf")
-    }
-
     onClick = (e) => {
         e.preventDefault()
         this.props.login({
@@ -54,17 +50,19 @@ class Layout extends Component {
         })
     };
 
-
     render() {
-
-        return <div>
-
-            <input ref="username" type="text" placeholder="Gebruikersnaam" value="demo"/>
-            <input ref="password" type="text" placeholder="Wachtwoord" value="test123"/>
-            <button onClick={this.onClick}>login</button>
-            <button onClick={this.test.bind(this)}>login</button>
-        </div>
+        return (
+            <div className="login-container">
+                <div className="input-container">
+                    <input ref="username" type="text" placeholder="Gebruikersnaam" value="demo" />
+                </div>
+                <div className="input-container">
+                    <input ref="password" type="text" placeholder="Wachtwoord" value="test123" />
+                </div>
+                <button onClick={this.onClick}>login</button>
+            </div>
+        );
     }
 }
 
-export default connect(select, {login, replace: routerActions.replace})(Layout)
+export default connect(select, { login, replace: routerActions.replace })(Layout)
