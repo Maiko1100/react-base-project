@@ -33,16 +33,24 @@ export const UserIsNotAuthenticated = UserAuthWrapper({
 })
 
 
-export const VisibleOnlyLoggedIn2 = UserAuthWrapper({
-    authSelector: state => state,
-    wrapperDisplayName: 'VisibleOnlyLoggedIn',
-    predicate: (user) => {console.log("test"+ user)},
-    FailureComponent: null
+//
+// export const VisibleOnlyLoggedIn = UserAuthWrapper({
+//     authSelector: state => state.user,
+//     wrapperDisplayName: 'VisibleOnlyLoggedIn',
+//     predicate: user => user.data,
+//     FailureComponent: null
+// });
 
-})
 export const VisibleOnlyLoggedIn = UserAuthWrapper({
-    authSelector: function(state) { console.log('is this running?', state, state.get('app').toJS()); return state.get('app'); },
-    wrapperDisplayName: 'VisibleOnlyIfOrgAdminOrManager',
-    predicate: function(auth) { console.log('is this running as well?', auth, auth.get('currentUser').toJS()); return true; },
-    FailureComponent: null,
-});
+    authSelector: state => state.user,
+    wrapperDisplayName: 'VisibleOnlyAdmin',
+    predicate: user => user.data,
+    FailureComponent: null
+})
+
+export const VisibleNotLoggedIn = UserAuthWrapper({
+    authSelector: state => state.user,
+    wrapperDisplayName: 'VisibleOnlyAdmin',
+    predicate: user => user.data === null && user.isLoading === false,
+    FailureComponent: null
+})
