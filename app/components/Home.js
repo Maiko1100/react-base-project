@@ -5,7 +5,7 @@ class Home extends Component {
   
   render() {
     return (
-     <div className={styles.title}>HomePage</div>
+     <div >HomePage</div>
     );
   }
 }
