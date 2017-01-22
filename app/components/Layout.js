@@ -1,10 +1,16 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-
-
 import {fetchUser} from "../actions/userActions"
-import {testApi} from "../actions/userActions"
+import { routerActions } from 'react-router-redux'
 
+function select(state, ownProps) {
+    const isAuthenticated = state.user.name || false
+    const redirect = ownProps.location.query.redirect || '/'
+    return {
+        isAuthenticated,
+        redirect
+    }
+}
 
 @connect((store) => {
     return {
@@ -14,15 +20,8 @@ import {testApi} from "../actions/userActions"
     };
 })
 
-// function select(state, ownProps) {
-//     const isAuthenticated = state.user.name || false
-//     const redirect = ownProps.location.query.redirect || '/'
-//     return {
-//         isAuthenticated,
-//         redirect
-//     }
-// }
-export default class Layout extends Component {
+
+class Layout extends Component {
 
 
     componentWillMount() {
@@ -46,4 +45,4 @@ export default class Layout extends Component {
     }
 }
 
-// export default connect(select, { login, replace: routerActions.replace })(Layout)
+export default connect(select, { fetchUser, replace: routerActions.replace })(Layout)
