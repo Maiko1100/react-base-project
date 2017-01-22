@@ -8,40 +8,11 @@ import { routerReducer, syncHistoryWithStore, routerActions, routerMiddleware } 
 import App from './components/App'
 import Home from './components/Home'
 import Admin from './components/Admin'
-import { UserAuthWrapper } from 'redux-auth-wrapper'
-import Loading from './components/Loading'
-
+import { UserIsAuthenticated, UserIsNotAuthenticated } from './utils/authWrappers.js'
 
 const baseHistory = browserHistory
 const history = syncHistoryWithStore(baseHistory, store)
 
-const UserIsAuthenticated = UserAuthWrapper({
-    authSelector: state => state.user,
-    authenticatingSelector: state => state.user.isLoading,
-    LoadingComponent: Loading,
-    redirectAction: routerActions.replace,
-    wrapperDisplayName: 'UserIsAuthenticated',
-    predicate: user => user.data !== null && user.isLoading === false,
-
-
-})
-const UserIsAdmin = UserAuthWrapper({
-    authSelector: state => state.user.data,
-    redirectAction: routerActions.replace,
-    failureRedirectPath: '/',
-    wrapperDisplayName: 'UserIsAdmin',
-    predicate: user => user.isAdmin,
-    allowRedirectBack: false
-})
-const UserIsNotAuthenticated = UserAuthWrapper({
-    authSelector: state => state.user,
-    redirectAction: routerActions.replace,
-    wrapperDisplayName: 'UserIsNotAuthenticated',
-    // Want to redirect the user when they are done loading and authenticated
-    predicate: user => user.data === null && user.isLoading === false,
-    failureRedirectPath: (state, ownProps) => ownProps.location.query.redirect || '/',
-    allowRedirectBack: false
-})
 ReactDOM.render(
 
     <Provider store={store}>
