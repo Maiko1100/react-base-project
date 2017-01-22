@@ -6,7 +6,6 @@ import store from "./store"
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
 import App from './components/App'
 import Home from './components/Home'
-// import './css/index.css';
 
 ReactDOM.render(<Provider store={store}>
     <Router history={hashHistory}>
