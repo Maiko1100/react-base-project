@@ -13,7 +13,7 @@ class App extends Component {
                 <div className="header">
                     <div className="companyName">KCPSoftware</div>
                     <ul>
-                        <li><Link to="/layout">Layout</Link></li>
+                        <li><Link to="/Login">Login</Link></li>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/Admin">{'Admnin (Login Required)'}</Link></li>
                         <li onClick={() => this.props.dispatch(logout())}>Logout</li>

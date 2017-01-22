@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
-import Layout from "./components/Layout"
+import Login from "./components/Login"
 import store from "./store"
 import { Router, Route, IndexRoute, hashHistory, browserHistory } from 'react-router'
 import { routerReducer, syncHistoryWithStore, routerActions, routerMiddleware } from 'react-router-redux'
@@ -14,6 +14,7 @@ const UserIsAuthenticated = UserAuthWrapper({
     authSelector: state => state.user,
     redirectAction: routerActions.replace,
     wrapperDisplayName: 'UserIsAuthenticated',
+    failureRedirectPath: '/login',
 
 })
 
@@ -26,7 +27,7 @@ ReactDOM.render(
         <Router history={hashHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home} />
-                <Route path="/Layout" component={Layout} />
+                <Route path="/Login" component={Login} />
                 <Route path="/Admin" component={UserIsAuthenticated(Admin)} />
             </Route>
         </Router>
