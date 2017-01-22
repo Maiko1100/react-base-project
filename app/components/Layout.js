@@ -14,15 +14,15 @@ import {testApi} from "../actions/userActions"
     };
 })
 
-function select(state, ownProps) {
-    const isAuthenticated = state.user.name || false
-    const redirect = ownProps.location.query.redirect || '/'
-    return {
-        isAuthenticated,
-        redirect
-    }
-}
-class Layout extends Component {
+// function select(state, ownProps) {
+//     const isAuthenticated = state.user.name || false
+//     const redirect = ownProps.location.query.redirect || '/'
+//     return {
+//         isAuthenticated,
+//         redirect
+//     }
+// }
+export default class Layout extends Component {
 
 
     componentWillMount() {
@@ -46,4 +46,4 @@ class Layout extends Component {
     }
 }
 
-export default connect(select, { login, replace: routerActions.replace })(Layout)
+// export default connect(select, { login, replace: routerActions.replace })(Layout)

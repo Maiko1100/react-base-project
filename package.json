@@ -32,7 +32,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
-    "devstart": "./node_modules/.bin/webpack-dev-server --content-base ./ --inline --hot",
+    "dev": "./node_modules/.bin/webpack-dev-server --content-base ./ --inline --hot",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
