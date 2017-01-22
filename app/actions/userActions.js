@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import * as constants from '../constants'
 export function fetchUser(username, password) {
 
     return function (dispatch) {
@@ -12,9 +12,10 @@ export function fetchUser(username, password) {
                 password: password
             }
         }).then((response) => {
-            dispatch({type: "FETCH_USER_FULFILLED", payload: response.data}),
+            dispatch({type: constants.USER_LOGGED_IN, payload: response.data}),
             localStorage.setItem('token', JSON.stringify(response.data.data.token)),
-                console.log(response.data.data.token)
+                localStorage.setItem('naam', JSON.stringify(response.data.data.user.firstName))
+
 
         })
             .catch((err) => {
@@ -36,6 +37,13 @@ export function testApi() {
             .catch((err) => {
                 dispatch({type: "FETCH_USER_REJECTED", payload: err})
             });
+    }
+}
+export function logout() {
+    localStorage.removeItem('token')
+    localStorage.removeItem('naam')
+    return {
+        type: constants.USER_LOGGED_OUT
     }
 }
 
