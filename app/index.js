@@ -18,13 +18,14 @@ const UserIsAuthenticated = UserAuthWrapper({
     wrapperDisplayName: 'UserIsAuthenticated'
 })
 
-ReactDOM.render(<Provider store={store}>
-    <Router history={hashHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute component={Home} />
-            <Route path="Layout" component={Layout} />
-            <Route path="Admin" component={UserIsAuthenticated(Admin)} />
-        </Route>
-    </Router>
+ReactDOM.render(
+    <Provider store={store}>
+        <Router history={hashHistory}>
+          <Route path="/" component={App}>
+              <IndexRoute component={Home} />
+              <Route path="Layout" component={Layout} />
+              <Route path="Admin" component={UserIsAuthenticated(Admin)} />
+          </Route>
+        </Router>
 </Provider>, app);
 
