@@ -9,18 +9,21 @@ import App from './components/App'
 import Home from './components/Home'
 import Admin from './components/Admin'
 import { UserAuthWrapper } from 'redux-auth-wrapper'
-import { logout } from './actions/userActions'
 
 const UserIsAuthenticated = UserAuthWrapper({
     authSelector: state => state.user,
     redirectAction: routerActions.replace,
-    wrapperDisplayName: 'UserIsAuthenticated'
+    wrapperDisplayName: 'UserIsAuthenticated',
+
 })
 
+const baseHistory = browserHistory
+const history = syncHistoryWithStore(baseHistory, store)
 ReactDOM.render(
+
     <Provider store={store}>
         {/* hashHistory ---> browserHistory when the site is on a server for clean urls*/}
-        <Router history={hashHistory}>
+        <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home} />
                 <Route path="/Layout" component={Layout} />

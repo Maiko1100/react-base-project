@@ -11,4 +11,5 @@ const baseHistory = browserHistory
 const routingMiddleware = routerMiddleware(baseHistory)
 const middleware = applyMiddleware(promise(), thunk, logger(), routingMiddleware)
 
-export default createStore(reducer, middleware)
+const store =  createStore(reducer, middleware)
+export default store

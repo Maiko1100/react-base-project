@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as constants from '../constants'
-export function fetchUser(username, password) {
+export function login(data) {
 
     return function (dispatch) {
         dispatch({type: "FETCH_USER", payload: ""})
@@ -8,13 +8,12 @@ export function fetchUser(username, password) {
             method: 'post',
             url: 'http://www.loginapi.nl/users/authenticate',
             auth: {
-                username: username,
-                password: password
+                username: data.username,
+                password: data.password
             }
         }).then((response) => {
             dispatch({type: constants.USER_LOGGED_IN, payload: response.data}),
-            localStorage.setItem('token', JSON.stringify(response.data.data.token)),
-                localStorage.setItem('naam', JSON.stringify(response.data.data.user.firstName))
+            localStorage.setItem('token', JSON.stringify(response.data.data.token))
         })
             .catch((err) => {
                 dispatch({type: "FETCH_USER_REJECTED", payload: err})
