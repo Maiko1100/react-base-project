@@ -54,10 +54,10 @@ class Layout extends Component {
         return (
             <div className="login-container">
                 <div className="input-container">
-                    <input ref="username" type="text" placeholder="Gebruikersnaam" value="demo" />
+                    <input ref="username" type="text" placeholder="Gebruikersnaam" value="johndoe@example.com" />
                 </div>
                 <div className="input-container">
-                    <input ref="password" type="text" placeholder="Wachtwoord" value="test123" />
+                    <input ref="password" type="text" placeholder="Wachtwoord" value="johndoe" />
                 </div>
                 <button onClick={this.onClick}>login</button>
             </div>

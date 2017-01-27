@@ -10,19 +10,20 @@ connect((store) => {
     user: store.user
 })
 
-const LogoutLink = VisibleOnlyLoggedIn(() =>    <li onClick={() => this.props.dispatch(logout())}><a>Logout</a></li>)
 const LoginLink = VisibleNotLoggedIn(() => <li><Link to="/Login">Login</Link></li>)
 
 class App extends Component {
 
     constructor(props){
         super(props)
-        this.props.dispatch(loadUser())
+        this.props.dispatch(loadUser(localStorage.getItem('token')))
 
         }
 
 
     render() {
+
+        const LogoutLink = VisibleOnlyLoggedIn(() =>    <li onClick={() => this.props.dispatch(logout())}><a>Logout</a></li>)
         return (
             <div>
                 <div className="header">

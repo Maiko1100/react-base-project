@@ -7,7 +7,6 @@ const initialState = {
 
 export default function userUpdate(state = initialState, {type, payload}) {
 
-    console.log(type)
     switch (type) {
 
         case constants.USER_LOGGING_IN:
@@ -19,12 +18,24 @@ export default function userUpdate(state = initialState, {type, payload}) {
         case constants.USER_LOGGED_OUT:
             return initialState
 
-        case constants.USER_LOAD:
+        case constants.USER_LOADED:
             if (localStorage.getItem('token')) {
-                return {data:{token: localStorage.getItem('token')}, isLoading: false};
+                return {
+                     data:
+                        {
+                            token: localStorage.getItem('token'),
+                            name: payload.data.name
+                        },
+                    isLoading: false
+                };
+
             }
 
             return {...initialState, isLoading: false}
+        case constants.USER_LOADED_FAILED:
+
+            return {...initialState, isLoading: false}
+
         default:
             return state
     }
