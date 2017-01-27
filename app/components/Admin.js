@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addBook , getBooks } from "../actions/bookActions";
+import { addBook , getBooks , deleteBook} from "../actions/bookActions";
 
 import { connect } from "react-redux";
 
@@ -7,7 +7,8 @@ import { connect } from "react-redux";
 @connect((store) => {
     return {
         user: store.user,
-        books: store.books.books
+        books: store.books.books,
+        test: store.books.bookDeleted
     };
 })
 
@@ -19,6 +20,7 @@ class Home extends Component {
             token: localStorage.getItem('token')
         }
         this.props.dispatch(getBooks(data2))
+        console.log(this.props.test)
 
 
     }
@@ -38,7 +40,12 @@ class Home extends Component {
     };
 
     deleteBook(id){
-        console.log(id)
+        var data3 = {
+            token: localStorage.getItem('token'),
+            id : id
+        }
+
+        this.props.dispatch(deleteBook(data3))
     }
 
 
@@ -46,7 +53,8 @@ class Home extends Component {
 
         const {books} =this.props;
 
-        const listbooks = books.map((book) => <li onClick={this.deleteBook.bind(this)} key={book.id}>{book.name}</li>)
+        const listbooks = books.map((book) => <li onClick={this.deleteBook.bind(this,book.id)} key={book.id}>{book.name}</li>)
+
 
         return (
             <div className="login-container">

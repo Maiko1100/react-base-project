@@ -3,6 +3,7 @@ import * as constants from '../constants'
 const initialState = {
     books: [],
     isLoading: false,
+    bookDeleted: false
 }
 
 export default function books(
@@ -16,7 +17,6 @@ export default function books(
             return {...initialState, isLoading: true}
 
         case constants.GET_BOOKS_SUCCES:
-            console.log('testetse');
             return {
                 ...state,
                 books : payload.books,
@@ -24,6 +24,17 @@ export default function books(
             }
 
         case constants.GET_BOOKS_FAILED:
+            return initialState
+
+        case constants.DELETE_BOOK:
+            return {...initialState, isLoading: true}
+
+        case constants.DELETE_BOOK_SUCCES:
+            return {
+                ...state, bookDeleted:true
+            }
+
+        case constants.DELETE_BOOK_FAILED:
             return initialState
 
     }

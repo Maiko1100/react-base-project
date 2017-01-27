@@ -44,3 +44,24 @@ export function addBook(data) {
             });
     }
 }
+export function deleteBook(data) {
+
+    return function (dispatch) {
+        dispatch({type: constants.DELETE_BOOK})
+        axios({
+            method: 'post',
+            url: constants.BASE_URL +'/book/delete',
+            headers: {
+                'Authorization': 'Bearer ' + data.token
+            },
+            data: {
+                id: data.id,
+            }
+        }).then((response) => {
+            dispatch({type: constants.DELETE_BOOK_SUCCES, payload: response.data})
+        })
+            .catch((err) => {
+                dispatch({type: constants.DELETE_BOOK_FAILED, payload: err})
+            });
+    }
+}
