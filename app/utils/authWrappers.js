@@ -9,7 +9,7 @@ export const UserIsAuthenticated = UserAuthWrapper({
     LoadingComponent: Loading,
     redirectAction: routerActions.replace,
     wrapperDisplayName: 'UserIsAuthenticated',
-    predicate: user => user.data !== null && user.isLoading === false,
+    predicate: user => user.token !== null && user.isLoading === false,
 
 
 })
@@ -27,7 +27,7 @@ export const UserIsNotAuthenticated = UserAuthWrapper({
     redirectAction: routerActions.replace,
     wrapperDisplayName: 'UserIsNotAuthenticated',
     // Want to redirect the user when they are done loading and authenticated
-    predicate: user => user.data === null && user.isLoading === false,
+    predicate: user => user.token === null && user.isLoading === false,
     failureRedirectPath: (state, ownProps) => ownProps.location.query.redirect || '/',
     allowRedirectBack: false
 })
@@ -44,13 +44,13 @@ export const UserIsNotAuthenticated = UserAuthWrapper({
 export const VisibleOnlyLoggedIn = UserAuthWrapper({
     authSelector: state => state.user,
     wrapperDisplayName: 'VisibleOnlyAdmin',
-    predicate: user => user.data,
+    predicate: user => user.token,
     FailureComponent: null
 })
 
 export const VisibleNotLoggedIn = UserAuthWrapper({
     authSelector: state => state.user,
     wrapperDisplayName: 'VisibleOnlyAdmin',
-    predicate: user => user.data === null && user.isLoading === false,
+    predicate: user => user.token === null && user.isLoading === false,
     FailureComponent: null
 })

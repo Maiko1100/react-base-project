@@ -6,9 +6,10 @@ import { connect } from "react-redux";
 
 @connect((store) => {
     return {
-        user: store.user,
+        user: store.user.user,
         books: store.books.books,
-        test: store.books.bookDeleted
+        token: store.user.token
+
     };
 })
 
@@ -20,11 +21,10 @@ class Home extends Component {
             token: localStorage.getItem('token')
         }
         this.props.dispatch(getBooks(data2))
-        console.log(this.props.test)
+        
 
 
     }
-
 
     onClick = (e) => {
         e.preventDefault()
@@ -50,6 +50,7 @@ class Home extends Component {
 
 
     render() {
+
 
         const {books} =this.props;
 

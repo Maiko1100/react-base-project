@@ -1,8 +1,9 @@
 import * as constants from '../constants'
 
 const initialState = {
-    data: null,
+    user:null,
     isLoading: false,
+    token: null
 }
 
 export default function userUpdate(state = initialState, {type, payload}) {
@@ -13,20 +14,19 @@ export default function userUpdate(state = initialState, {type, payload}) {
             return {...initialState, isLoading: true}
 
         case constants.USER_LOGGED_IN:
-            return {data: payload, isLoading: false}
+            console.log(payload)
+            return {...initialState,token: payload.data.token, isLoading: false}
 
         case constants.USER_LOGGED_OUT:
             return initialState
 
         case constants.USER_LOADED:
+
             if (localStorage.getItem('token')) {
                 return {
-                     data:
-                        {
-                            token: localStorage.getItem('token'),
-                            name: payload.data.name
-                        },
-                    isLoading: false
+                    ...initialState,
+                    user:payload.data,
+                    token:localStorage.getItem('token')
                 };
 
             }

@@ -31,10 +31,26 @@ export default function books(
 
         case constants.DELETE_BOOK_SUCCES:
             return {
-                ...state, bookDeleted:true
+                ...state,
+                books : payload.books,
+                bookDeleted:true
             }
 
         case constants.DELETE_BOOK_FAILED:
+            return initialState
+
+
+        case constants.ADD_BOOK:
+            return {...initialState, isLoading: true}
+
+        case constants.ADD_BOOK_SUCCES:
+            return {
+                ...state,
+                books : payload.books,
+                bookDeleted:true
+            }
+
+        case constants.ADD_BOOK_FAILED:
             return initialState
 
     }
