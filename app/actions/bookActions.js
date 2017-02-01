@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as constants from '../constants'
-
+import * as config from '../config'
 
 export function getBooks(data) {
 
@@ -8,7 +8,7 @@ export function getBooks(data) {
         dispatch({type: constants.GET_BOOKS})
         axios({
             method: 'get',
-            url: constants.BASE_URL +'/books',
+            url: config.BASE_URL +'/books',
             headers: {
                 'Authorization': 'Bearer ' + data.token
             }
@@ -27,7 +27,7 @@ export function addBook(data) {
         dispatch({type: constants.ADD_BOOK})
         axios({
             method: 'post',
-            url: constants.BASE_URL +'/books/add',
+            url: config.BASE_URL +'/books/add',
             headers: {
                 'Authorization': 'Bearer ' + data.token
             },
@@ -50,7 +50,7 @@ export function deleteBook(data) {
         dispatch({type: constants.DELETE_BOOK})
         axios({
             method: 'post',
-            url: constants.BASE_URL +'/book/delete',
+            url: config.BASE_URL +'/book/delete',
             headers: {
                 'Authorization': 'Bearer ' + data.token
             },

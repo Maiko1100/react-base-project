@@ -1,5 +1,7 @@
 import axios from "axios";
 import * as constants from '../constants'
+import * as config from '../config'
+
 
 export function login(data) {
 
@@ -7,7 +9,7 @@ export function login(data) {
         dispatch({type: "FETCH_USER"})
         axios({
             method: 'post',
-            url: 'http://localhost:8000/api/auth/login',
+            url: config.BASE_URL + '/auth/login',
             auth: {
                 username: data.username,
                 password: data.password
@@ -37,7 +39,7 @@ export function loadUser(token) {
         dispatch({type: constants.USER_LOADING})
         axios({
             method: 'get',
-            url: 'http://localhost:8000/api/auth/user/',
+            url: config.BASE_URL + '/auth/user/',
             headers: {'Authorization': 'Bearer ' + token}
         }).then((response) => {
             dispatch({type: constants.USER_LOADED, payload: response.data})
