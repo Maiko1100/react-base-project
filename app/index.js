@@ -17,7 +17,7 @@ ReactDOM.render(
 
     <Provider store={store}>
         {/* hashHistory ---> browserHistory when the site is on a server for clean urls*/}
-        <Router history={hashHistory}>
+        <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home} />
                 <Route path="/Login" component={UserIsNotAuthenticated(Login)} />
