@@ -37,7 +37,7 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname + "./actions",
+    path: __dirname,
     filename: "index.min.js"
   },
   plugins: debug ? [] : [
