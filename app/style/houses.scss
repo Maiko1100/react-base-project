@@ -3,9 +3,7 @@
 
 .SortableHelper {
   list-style: none;
-  border: 5px solid red;
-  width: 100px !important;
-
+  display: inline-block;
 }
 
 .houses-container{
@@ -77,8 +75,7 @@
 
 
   .sortable-container{
-    width: 100%;
-
+    display: inline-block;
 
     li {
       list-style: none;

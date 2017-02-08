@@ -8,7 +8,7 @@ import Dropzone from "react-dropzone"
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 
 
-const SortableItem = SortableElement(({value}) => <li>{value}</li>);
+const SortableItem = SortableElement(({value}) => <img src={value}></img>);
 
 const SortableList = SortableContainer(({items}) => {
 
@@ -19,7 +19,7 @@ const SortableList = SortableContainer(({items}) => {
 
             {items.map((value, index) =>
 
-                <SortableItem key={`item-${index}`} index={index} value={<img src={value.preview}></img>}/>
+                <SortableItem key={`item-${index}`} index={index} value={value.preview}/>
             )}
         </div>
     );
@@ -49,12 +49,6 @@ class Houses extends Component {
 
     }
 
-
-    onSortEnd = ({oldIndex, newIndex}) => {
-        this.setState({
-            files: arrayMove(this.state.files, oldIndex, newIndex)
-        });
-    };
 
 
     onDrop(acceptedFiles) {
@@ -133,7 +127,7 @@ class Houses extends Component {
                     <button onClick={this.addHouse.bind(this)}>Voeg toe</button>
                     {/*{pictures.map((picture) => <img src={picture.preview}></img>)}*/}
 
-                        <SortableList helperClass="SortableHelper" items={this.state.files} onSortEnd={this.onSortEnd}/>
+                        <SortableList axis="xy" helperClass="SortableHelper" items={this.state.files} onSortEnd={this.onSortEnd}/>
 
 
                 </div>
