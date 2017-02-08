@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-import { addHouse } from "../actions/houseActions";
-import { connect } from "react-redux";
+import {addHouse} from "../actions/houseActions";
+import {connect} from "react-redux";
 import  AdminNav from "./AdminNav";
-import { styles } from "../style/houses.scss"
+import {styles} from "../style/houses.scss"
 import Dropzone from "react-dropzone"
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
-
-
 
 
 const SortableItem = SortableElement(({value}) => <li>{value}</li>);
 
 const SortableList = SortableContainer(({items}) => {
-    return (
-        <div>
-            {items.map((value, index) =>
-                <SortableItem key={`item-${index}`} index={index} value={<img src={value.preview}></img>}/>
 
+
+    return (
+
+        <div className="sortable-container">
+
+            {items.map((value, index) =>
+
+                <SortableItem key={`item-${index}`} index={index} value={<img src={value.preview}></img>}/>
             )}
         </div>
     );
 });
-
-
 
 
 @connect((store) => {
@@ -36,11 +36,7 @@ const SortableList = SortableContainer(({items}) => {
 })
 
 
-
-
 class Houses extends Component {
-
-
 
 
     constructor() {
@@ -61,7 +57,6 @@ class Houses extends Component {
     };
 
 
-
     onDrop(acceptedFiles) {
 
         if (this.state.files == null) {
@@ -70,25 +65,23 @@ class Houses extends Component {
                 files: acceptedFiles
             })
         } else {
-                var newArray = this.state.files.slice();
+            var newArray = this.state.files.slice();
 
-                    acceptedFiles.map((picture) =>
-                        newArray.push(picture)
-                    );
+            acceptedFiles.map((picture) =>
+                newArray.push(picture)
+            );
 
-                this.setState({files: newArray});
-                }
+            this.setState({files: newArray});
+        }
 
         console.log(this.state)
     }
 
 
-
-
-    addHouse(){
+    addHouse() {
         // console.log(this.state)
         var data = {
-            name : this.refs.name.value,
+            name: this.refs.name.value,
             price: this.refs.price.value,
             year: this.refs.year.value,
             pictures: this.state.files,
@@ -98,7 +91,6 @@ class Houses extends Component {
     }
 
 
-
     onSortEnd = ({oldIndex, newIndex}) => {
         this.setState({
             files: arrayMove(this.state.files, oldIndex, newIndex)
@@ -106,13 +98,12 @@ class Houses extends Component {
     };
 
 
-
     render() {
-
 
 
         return (
             <div>
+
                 <AdminNav/>
 
                 <div className="houses-container">
@@ -121,15 +112,15 @@ class Houses extends Component {
 
                     <div className="input-container">
                         <label>Naam</label>
-                        <input ref="name" type="text" placeholder="naam"  />
+                        <input ref="name" type="text" placeholder="naam"/>
                     </div>
                     <div className="input-container">
                         <label>Bouwjaar</label>
-                        <input ref="year" type="text" placeholder="Bouwjaar"  />
+                        <input ref="year" type="text" placeholder="Bouwjaar"/>
                     </div>
                     <div className="input-container">
                         <label>test</label>
-                        <input ref="price" type="text" placeholder="Prijs" />
+                        <input ref="price" type="text" placeholder="Prijs"/>
                     </div>
 
                     <Dropzone className="dropzone" onDrop={this.onDrop}>
@@ -141,9 +132,9 @@ class Houses extends Component {
 
                     <button onClick={this.addHouse.bind(this)}>Voeg toe</button>
                     {/*{pictures.map((picture) => <img src={picture.preview}></img>)}*/}
-<div className="sortable-container">
-                    <SortableList  axis="xy" items={this.state.files} onSortEnd={this.onSortEnd} />
-</div>
+
+                        <SortableList helperClass="SortableHelper" items={this.state.files} onSortEnd={this.onSortEnd}/>
+
 
                 </div>
 

@@ -1,5 +1,13 @@
 @import "variables";
 
+
+.SortableHelper {
+  list-style: none;
+  border: 5px solid red;
+  width: 100px !important;
+
+}
+
 .houses-container{
   width: 50%;
   margin-left: 30%;
