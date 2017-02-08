@@ -4,10 +4,12 @@ import { routerReducer, syncHistoryWithStore, routerActions, routerMiddleware } 
 
 import user from './user'
 import books from './book'
+import adminNav from './adminNav'
 
 export default combineReducers(Object.assign({}, {
   routing: routerReducer,
     user,
-    books
+    books,
+    adminNav
 
 }))

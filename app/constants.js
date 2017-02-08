@@ -20,3 +20,8 @@ export const GET_BOOKS_FAILED = 'GET_BOOKS_FAILED'
 export const DELETE_BOOK = 'DELETE_BOOK'
 export const DELETE_BOOK_SUCCES = 'DELETE_BOOK_SUCCES'
 export const DELETE_BOOK_FAILED = 'DELETE_BOOK_FAILED'
+
+//-----------------Houses
+export const ADD_HOUSE = 'ADD_HOUSE'
+export const ADD_HOUSE_SUCCES = 'ADD_HOUSE_SUCCES'
+export const ADD_HOUSE_FAILED = 'ADD_HOUSE_FAILED'

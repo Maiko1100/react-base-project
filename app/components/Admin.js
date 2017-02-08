@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { addBook , getBooks , deleteBook} from "../actions/bookActions";
 
 import { connect } from "react-redux";
-
+import  AdminNav from "./AdminNav";
 
 @connect((store) => {
     return {
@@ -13,8 +13,16 @@ import { connect } from "react-redux";
     };
 })
 
-class Home extends Component {
+class Admin extends Component {
+    constructor() {
+        super();
+        this.state = {
+            files: [],
+            test: '',
 
+
+        };
+    }
 
     componentWillMount() {
         var data2 = {
@@ -40,24 +48,34 @@ class Home extends Component {
     };
 
     deleteBook(id){
-        var data3 = {
-            token: localStorage.getItem('token'),
-            id : id
-        }
+        // var data3 = {
+        //     token: localStorage.getItem('token'),
+        //     id : id
+        // }
+        //
+        // this.props.dispatch(deleteBook(data3))
 
-        this.props.dispatch(deleteBook(data3))
+        console.log(this.state)
     }
+
+    tester() {
+        this.setState({test: 'hoiiii'})
+    }
+
 
 
     render() {
 
 
-        const {books} =this.props;
+        const { books } = this.props;
 
         const listbooks = books.map((book) => <li onClick={this.deleteBook.bind(this,book.id)} key={book.id}>{book.name}</li>)
 
 
         return (
+            <div>
+                <AdminNav/>
+                <p>{this.state.test}</p>
             <div className="login-container">
 
                 <h1>Voeg een boek toe</h1>
@@ -71,13 +89,13 @@ class Home extends Component {
                     <input ref="year" type="text" placeholder="year" />
                 </div>
                 <button onClick={this.onClick}>Voeg toe</button>
-
+                <button onClick={this.tester.bind(this)}>Test</button>
                 <ul>{listbooks}</ul>
             </div>
-
+            </div>
 
         );
     }
 }
 
-export default Home;
+export default Admin;

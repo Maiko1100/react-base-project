@@ -1,0 +1,87 @@
+@import "variables";
+
+.houses-container{
+  width: 50%;
+  margin-left: 30%;
+  margin-top: 50px;
+  text-align: center;
+
+  .dropzone{
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+    height: 100px;
+    border-width: 2px;
+    border-color: rgb(102, 102, 102);
+    border-style: dashed;
+    border-radius: 5px;
+
+    p {
+      margin-top:30px;
+      text-align: center;
+    }
+  }
+
+  .input-container {
+    width: 100%;
+    float: left;
+    margin-right: 10%;
+    margin-top: 10px;
+
+
+    input {
+      width: 60%;
+      float:right;
+      border: .5px solid $secondary-color;
+      color: $secondary-color;
+
+    }
+
+    label {
+      display: inline;
+      width: 100%;
+      text-align: right;
+      margin-right: 3px;
+    }​
+
+
+    input:focus{
+      outline: none;
+      border: 2px solid $secondary-color;
+    }
+
+
+  }
+
+  button {
+    float: left;
+    background-color: $primary-color;
+    border: 3px solid $secondary-color;
+    margin-top: 10px;
+    color: $secondary-color;
+    box-sizing: border-box;
+  }
+
+  button:hover{
+    background-color: $secondary-color;
+    color: $primary-color;
+  }
+
+
+  .sortable-container{
+    width: 100%;
+
+
+    li {
+      list-style: none;
+    }
+
+    img {
+      width: 25%;
+      margin: 5px;
+      float: left;
+    }
+  }
+
+
+}

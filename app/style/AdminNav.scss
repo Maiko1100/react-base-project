@@ -1,0 +1,71 @@
+@import "variables";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: $primary-color;
+
+  .sideNav{
+    width: 20%;
+    background-color: $secondary-color;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+
+
+    }
+
+    li a {
+      display: block;
+      padding: 14.5px 16px;
+      color: $primary-color;
+      text-decoration: none;
+      border-bottom: 1px solid black;
+      max-height:15em;
+
+    }
+
+    li:hover {
+      background-color: #2e333a;
+    }
+
+    li:hover a {
+      color: #2e333a;
+      background-color: $primary-color;
+      cursor: pointer;
+    }
+
+    .sideNavChild {
+      background-color: $secondary-color  * 1.5;
+      padding-left: 10%;
+
+      li:hover a {
+        color: #2e333a;
+        background-color: $primary-color;
+        cursor: pointer;
+      }
+
+    }
+    .sideNavChildCollapse {
+      max-height:0;
+      overflow:hidden;
+      transition:0.5s linear;
+
+    }
+
+
+
+  }
+
+
+
+}
+

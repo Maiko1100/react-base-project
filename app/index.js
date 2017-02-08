@@ -4,10 +4,11 @@ import { Provider } from "react-redux"
 import Login from "./components/Login"
 import store from "./store"
 import { Router, Route, IndexRoute, hashHistory, browserHistory } from 'react-router'
-import { routerReducer, syncHistoryWithStore, routerActions, routerMiddleware } from 'react-router-redux'
+import { syncHistoryWithStore } from 'react-router-redux'
 import App from './components/App'
 import Home from './components/Home'
 import Admin from './components/Admin'
+import Houses from './components/Houses'
 import { UserIsAuthenticated, UserIsNotAuthenticated } from './utils/authWrappers.js'
 
 const baseHistory = browserHistory
@@ -20,8 +21,9 @@ ReactDOM.render(
         <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home} />
-                <Route path="/Login" component={UserIsNotAuthenticated(Login)} />
-                <Route path="/Admin" component={UserIsAuthenticated(Admin)} />
+                <Route path="Login" component={UserIsNotAuthenticated(Login)} />
+                <Route path="Admin" component={UserIsAuthenticated(Admin)} />
+                <Route path="huizen" component={UserIsAuthenticated(Houses)} />
             </Route>
         </Router>
     </Provider>, app);

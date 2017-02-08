@@ -9,7 +9,7 @@ import reducer from "./reducers"
 
 const baseHistory = browserHistory
 const routingMiddleware = routerMiddleware(baseHistory)
-const middleware = applyMiddleware(promise(), thunk, logger(), routingMiddleware)
+const middleware = applyMiddleware(thunk, promise(), logger(), routingMiddleware)
 
 const store =  createStore(reducer, middleware)
 export default store
