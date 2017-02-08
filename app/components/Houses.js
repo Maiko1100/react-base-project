@@ -14,12 +14,11 @@ const SortableItem = SortableElement(({value}) => <li>{value}</li>);
 
 const SortableList = SortableContainer(({items}) => {
     return (
-        <div>
+        <ul className="list">
             {items.map((value, index) =>
-                <SortableItem key={`item-${index}`} index={index} value={<img src={value.preview}></img>}/>
-
+                <SortableItem key={`item-${index}`} index={index} value={value} />
             )}
-        </div>
+        </ul>
     );
 });
 
@@ -48,6 +47,7 @@ class Houses extends Component {
         this.state = {
             files: [],
             test: '',
+            items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6']
         };
         this.onDrop = this.onDrop.bind(this);
 
@@ -56,8 +56,9 @@ class Houses extends Component {
 
     onSortEnd = ({oldIndex, newIndex}) => {
         this.setState({
-            files: arrayMove(this.state.files, oldIndex, newIndex)
+            items: arrayMove(this.state.items, oldIndex, newIndex)
         });
+        console.log("hellooooo");
     };
 
 
@@ -142,9 +143,8 @@ class Houses extends Component {
                     <button onClick={this.addHouse.bind(this)}>Voeg toe</button>
                     {/*{pictures.map((picture) => <img src={picture.preview}></img>)}*/}
 <div className="sortable-container">
-                    <SortableList  axis="xy" items={this.state.files} onSortEnd={this.onSortEnd} />
+    <SortableList helperClass="imHelping" items={this.state.items} onSortEnd={this.onSortEnd} />
 </div>
-
                 </div>
 
             </div>
