@@ -1,63 +1,82 @@
 import React, { Component } from 'react';
-import { addBook , getBooks , deleteBook} from "../actions/bookActions";
+import { addBook, getBooks, deleteBook } from "../actions/bookActions";
 import { Link } from 'react-router'
 import { connect } from "react-redux";
 import { styles } from '../style/AdminNav.scss'
 
-
-
-
-
 class AdminNav extends Component {
+    constructor() {
+        super();
+        this.state = {
+            openSideMenu: true,
+            navItems: [
+                {
+                    text: "test1",
+                    href: "#test",
+                    showChilds: true,
+                    childs: [{
+                        text: "test2",
+                        href: "#test"
+                    }, {
+                        text: "test3",
+                        href: "#test"
+                    }
+                    ]
+                },
+                {
+                    text: "test4",
+                    href: "#test",
+                    showChilds: false,
+                    childs: [{
+                        text: "test5",
+                        href: "#test"
+                    }, {
+                        text: "test6",
+                        href: "#test"
+                    }
+                    ]
+                }
+            ]
+        };
+    }
 
-constructor() {
-    super();
-    this.state = {
-        selected: '',
-        collapse :true,
-        class:''
-
-    };
-}
-
-    test(state,key) {
-
-        this.setState({collapse:!state})
-
-        if (state){
-            this.setState({class:'sideNavChild'})
-        }else{
-            this.setState({class:'sideNavChildCollapse'})
+    setShowChilds(text) {
+        let navItems = this.state.navItems.slice();
+        for (let i = 0; i < navItems.length; i++) {
+            if (navItems[i].text == text) {
+                    navItems[i].showChilds = !navItems[i].showChilds
+                    this.setState({ navItems: navItems })                
+            }
         }
-
-
-    }
-    test2(){
-    console.log(this.state.class)
     }
 
+    toggleSideMenu(){
+     this.setState({openSideMenu: !this.state.openSideMenu});
+     console.log(this.state.openSideMenu);
+    }
 
     render() {
-
-
-
+        const _this = this;
+        let index = 0;
         return (
-
-            <div className="sideNav">
-
+            <div className="sideNavContainer">
+            <div className={"sideNav " + (this.state.openSideMenu ? '' : 'closed')}>
                 <ul>
-                    <div className="parent" onClick={this.test.bind(this, this.state.collapse)}> Parent
-                        <div className={this.state.class} ><a href="default.asp">Child</a></div>
-                        <div className={this.state.class} ><a href="default.asp">Child 2</a></div>
-                        <div className={this.state.class} ><a href="default.asp">Child 3</a></div>
-                    </div>
-                    <li><Link to="/Huizen">Huizen</Link></li>
-                    <li><a href="contact.asp">Contact</a></li>
-                        <li className={this.state.class} ><a href="default.asp">Child</a></li>
-                        <li className={this.state.class} ><a href="default.asp">Child 2</a></li>
-                        <li className={this.state.class} ><a href="default.asp">Child 3</a></li>
-                    <li onClick={this.test2.bind(this)}><a>About</a></li>
+                    {this.state.navItems.map(function (navItem) {
+                        index++
+                        return (
+                            <div>
+                                <li key={index} onClick={_this.setShowChilds.bind(_this, navItem.text)}><span>{navItem.text}</span></li>{
+                                    navItem.childs.map(function (subNavItem) {
+                                            index++
+                                            return <li key={index} className={"childItem " + (navItem.showChilds ? '' : 'hideChild')}>
+                                            <span>{subNavItem.text}</span></li>
+                                    })}
+                            </div>);
+                    })}
                 </ul>
+            </div>
+            <div class="toggleNavButton" onClick={this.toggleSideMenu.bind(this)}>X</div>
             </div>
 
 

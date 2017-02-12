@@ -6,6 +6,11 @@
   border: 5px solid red;
   width: 100px !important;
 
+img {
+  width: 100px;
+}
+  
+
 }
 
 .houses-container{
@@ -13,6 +18,7 @@
   margin-left: 30%;
   margin-top: 50px;
   text-align: center;
+  display: inline-block;
 
   .dropzone{
     float: left;
@@ -47,7 +53,6 @@
 
     label {
       display: inline;
-      width: 100%;
       text-align: right;
       margin-right: 3px;
     }​
@@ -78,6 +83,7 @@
 
   .sortable-container{
     width: 100%;
+    display: inline-block;
 
 
     li {
