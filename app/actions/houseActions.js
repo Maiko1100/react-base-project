@@ -24,17 +24,20 @@ export function getHouses(data) {
 export function addHouse(data) {
 
     return function (dispatch) {
+
         dispatch({type: constants.ADD_HOUSE})
+
         axios({
             method: 'post',
             url: config.BASE_URL +'/houses/add',
             headers: {
-                'Authorization': 'Bearer ' + data.token
+                'Authorization': 'Bearer ' + data.token,
             },
+
             data: {
                 name: data.name,
-                year: data.author,
-                price: data.year,
+                year: data.year,
+                price: data.price,
                 pictures: data.pictures
             }
         }).then((response) => {

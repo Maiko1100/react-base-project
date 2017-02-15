@@ -9,7 +9,6 @@ import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 
 
 const SortableItem = SortableElement(({value}) => <img src={value}></img>);
-
 const SortableList = SortableContainer(({items}) => {
 
 
@@ -68,17 +67,28 @@ class Houses extends Component {
             this.setState({files: newArray});
         }
 
-        console.log(this.state)
     }
+
+    // async test (file) {
+    //
+    //     var reader = new FileReader();
+    //     reader.readAsBinaryString(file);
+    //
+    //     reader.onload = function(event) {
+    //         // The file's text will be printed here
+    //         return event.target.result
+    //     };
+    // }
 
 
     addHouse() {
-        // console.log(this.state)
+
+
         var data = {
             name: this.refs.name.value,
             price: this.refs.price.value,
             year: this.refs.year.value,
-            pictures: this.state.files,
+            pictures : this.state.files,
             token: localStorage.getItem('token')
         }
         this.props.dispatch(addHouse(data))
@@ -86,9 +96,11 @@ class Houses extends Component {
 
 
     onSortEnd = ({oldIndex, newIndex}) => {
+
         this.setState({
             files: arrayMove(this.state.files, oldIndex, newIndex)
         });
+
     };
 
 
