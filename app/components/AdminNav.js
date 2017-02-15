@@ -76,7 +76,7 @@ class AdminNav extends Component {
                     })}
                 </ul>
             </div>
-            <div class="toggleNavButton" onClick={this.toggleSideMenu.bind(this)}>X</div>
+            <div class="toggleNavButton" onClick={this.toggleSideMenu.bind(this)}><i className={this.state.openSideMenu ? 'fa fa-angle-left' : 'fa fa-angle-right'} aria-hidden="true"></i></div>
             </div>
 
 

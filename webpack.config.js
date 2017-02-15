@@ -33,6 +33,26 @@ module.exports = {
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader?mimetype=image/svg+xml'
+      },
+      {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file-loader?mimetype=application/font-woff"
+      },
+      {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file-loader?mimetype=application/font-woff"
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file-loader?mimetype=application/octet-stream"
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file-loader"
       }
     ]
   },
@@ -52,11 +72,11 @@ module.exports = {
 // outside of the source.
 const src = path.join(__dirname, '..', '..', 'src')
 if (fs.existsSync(src)) {
-    // Use the latest src
-    module.exports.resolve = { alias: { 'redux-auth-wrapper': src } }
-    module.exports.module.loaders.push({
-        test: /\.js$/,
-        loaders: [ 'babel' ],
-        include: src
-    })
+  // Use the latest src
+  module.exports.resolve = { alias: { 'redux-auth-wrapper': src } }
+  module.exports.module.loaders.push({
+    test: /\.js$/,
+    loaders: ['babel'],
+    include: src
+  })
 }

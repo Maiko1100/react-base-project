@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { connect } from "react-redux"
-import { logout , loadUser} from '../actions/userActions'
+import { logout, loadUser } from '../actions/userActions'
 import { styles } from '../style/app.scss'
 import { UserAuthWrapper } from 'redux-auth-wrapper'
-import {  VisibleNotLoggedIn, VisibleOnlyLoggedIn } from '../utils/authWrappers.js'
+import { VisibleNotLoggedIn, VisibleOnlyLoggedIn } from '../utils/authWrappers.js'
+import AdminNav from "./AdminNav";
+import 'font-awesome/scss/font-awesome.scss'; 
 
 connect((store) => {
     user: store.user
@@ -14,16 +16,16 @@ const LoginLink = VisibleNotLoggedIn(() => <li><Link to="/Login">Login</Link></l
 
 class App extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.props.dispatch(loadUser(localStorage.getItem('token')))
 
-        }
+    }
 
 
     render() {
 
-        const LogoutLink = VisibleOnlyLoggedIn(() =>    <li onClick={() => this.props.dispatch(logout())}><a>Logout</a></li>)
+        const LogoutLink = VisibleOnlyLoggedIn(() => <li onClick={() => this.props.dispatch(logout())}><a>Logout</a></li>)
         return (
             <div>
                 <div className="header">
@@ -36,6 +38,7 @@ class App extends Component {
                         <LogoutLink />
                     </ul>
                 </div>
+                <AdminNav />
                 {this.props.children}
             </div>
         );
