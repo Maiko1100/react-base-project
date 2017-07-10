@@ -11,11 +11,10 @@ import Admin from './components/Admin'
 import Houses from './components/Houses'
 import { UserIsAuthenticated, UserIsNotAuthenticated } from './utils/authWrappers.js'
 
-const baseHistory = browserHistory
+const baseHistory = hashHistory
 const history = syncHistoryWithStore(baseHistory, store)
 
 ReactDOM.render(
-
     <Provider store={store}>
         {/* hashHistory ---> browserHistory when the site is on a server for clean urls*/}
         <Router history={history}>

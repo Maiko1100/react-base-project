@@ -6,7 +6,7 @@ import { styles } from '../style/app.scss'
 import { UserAuthWrapper } from 'redux-auth-wrapper'
 import { VisibleNotLoggedIn, VisibleOnlyLoggedIn } from '../utils/authWrappers.js'
 import AdminNav from "./AdminNav";
-import 'font-awesome/scss/font-awesome.scss'; 
+import 'font-awesome/scss/font-awesome.scss';
 
 connect((store) => {
     user: store.user
@@ -15,11 +15,10 @@ connect((store) => {
 const LoginLink = VisibleNotLoggedIn(() => <li><Link to="/Login">Login</Link></li>)
 
 class App extends Component {
-
     constructor(props) {
         super(props)
         this.props.dispatch(loadUser(localStorage.getItem('token')))
-
+        this.state = {open: true}
     }
 
 
@@ -39,7 +38,9 @@ class App extends Component {
                     </ul>
                 </div>
                 <AdminNav />
-                {this.props.children}
+                <div>
+                    {this.props.children}
+                </div>
             </div>
         );
     }
